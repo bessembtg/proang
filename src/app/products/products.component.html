@@ -1,0 +1,29 @@
+
+<div *ngIf="isLoading" class=" position-absolute bg-body-tertiary w-100 h-100 top-0 start-0 " alt=""><img
+  src="../../assets/images/freshcart-logo.svg" class="position-relative start-50 top-50 translate-middle w-25"></div>
+
+  <section *ngIf="!isLoading" class="position-relative">
+
+<div class="row">
+    <div class="col-md-4" *ngFor="let product of AllProducts" [routerLink]="['/products',product._id]">
+        <img [src]="product.imageCover"  class="w-100  ">
+        <p>{{product.title}}</p>
+
+        <p class="text-muted">{{product.description.split(" ").slice(0 ,5).join(" ").concat('see more')}}</p>
+        <h4 class="text-danger fw-bold">{{product.price}}</h4>
+        <span >{{product.ratingsAverage}}</span>
+        <ng-container *ngFor="let star of getStars(product.ratingsAverage).fullSatrs">
+            <i class="fa-solid fa-star text-warning"></i>
+        </ng-container>
+        <i *ngIf="getStars(product.ratingsAverage).halfStars" class="fa-solid fa-star-half-stroke text-warning" ></i>
+        <ng-container *ngFor="let star of getStars(product.ratingsAverage).emptyStars">
+            <i  class="fa-solid fa-star text-secondary"></i>
+        </ng-container>
+        <button class="btn btn-outline-success fw-bolder my-3 form-control">view details </button>
+    </div>
+  </div>
+<div class="d-flex position-fixed bottom-0 bg-secondary-subtle w-100 justify-content-center p-2">
+
+  <button  class="btn btn-outline-success mx-2 " (click)="getAllProduct(num)" *ngFor="let num of nums">{{num}}</button>
+</div>
+  </section>

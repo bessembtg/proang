@@ -1,0 +1,34 @@
+<div class="row my-4">
+    <div class="col-md-1">
+        <img [src]="img"  class="w-100" *ngFor="let img of myData.images" (click)="changeSrc(img)">
+    </div>
+    <div class="col-md-3">
+        <img [src]="mainSrc?mainSrc:myData.imageCover" class="w-100" >
+    </div>
+    <div class="col-md-8">
+        <h3>{{title}}</h3>
+        <p>{{myData.description}}</p>
+        <div class="box d-flex align-items-center justify-content-between">
+            <p>{{myData.price}}</p>
+            <div>
+                <span>{{myData.ratingsAverage}}</span>
+                <ng-container *ngFor="let star of getStars(myData.ratingsAverage).fullSatrs">
+                    <i class="fa-solid fa-star text-warning"></i>
+                </ng-container>
+                <i *ngIf="getStars(myData.ratingsAverage).halfStars" class="fa-solid fa-star-half-stroke text-warning" ></i>
+                <ng-container *ngFor="let star of getStars(myData.ratingsAverage).emptyStars">
+                    <i  class="fa-solid fa-star text-secondary"></i>
+                </ng-container>
+            </div>
+        </div>
+        <button class="btn btn-outline-success form-control" (click)="addToCart(myData._id)">add to cart </button>
+        <div class="alert alert-success" *ngIf="msg">
+            {{msg}}
+        </div>
+    </div>
+</div>
+
+
+
+
+

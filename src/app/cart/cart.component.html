@@ -1,0 +1,29 @@
+<div *ngIf="isLoading" class=" position-absolute bg-body-tertiary w-100 h-100 top-0 start-0 " alt=""><img
+  src="../../assets/images/freshcart-logo.svg" class="position-relative start-50 top-50 translate-middle w-25"></div>
+
+
+
+<h2 class="my-4 text-center"> Number Of Cart: <span class="text-danger">{{cartDetails?.numOfCartItems}}</span></h2>
+<div class="row">
+    <div class="col-md-3" *ngFor="let item of cartDetails?.data?.products">
+        <div class="card p-2">
+          <img [src]="item.product.imageCover" class="w-100" alt="">
+          <p class="my-2">{{item.price}} DT</p>
+          <div class="box d-flex align-items-center justify-content-between">
+          <p>{{item.product.title}}</p>
+            <p (click)="removeFromCart(item.product._id)"><i class="fas fa-trash text-danger" ></i></p>
+          </div>
+            <div class="box d-flex align-items-center justify-content-between">
+                <div class="mx-auto">
+                <button class="  btn btn-outline-success" (click)="countPlus(item.count,item.product._id)">+</button>
+                <div class=" mx-4 btn btn-outline-success">{{item.count}}</div>
+                <button class=" btn btn-outline-success" (click)="countMoins(item.count,item.product._id)">-</button>
+              </div>
+                
+            </div>
+        </div>
+      <p>{{msgQuantity}}</p>
+    </div>
+    <h2 class="my-4 "> Total Price: <span class="text-danger">{{cartDetails?.data?.totalCartPrice}} dt</span></h2>
+
+</div>

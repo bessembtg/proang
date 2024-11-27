@@ -1,0 +1,8 @@
+<div *ngIf="isLoading" class=" position-absolute bg-body-tertiary w-100 h-100 top-0 start-0 " alt=""><img
+    src="../../assets/images/freshcart-logo.svg" class="position-relative start-50 top-50 translate-middle w-25"></div>
+
+<div class="row">
+    <div class="col-md-3" *ngFor="let brand of allBrands">
+        <img [src]="brand.image" class="w-100" alt="" (click)="getProductWithBrand(brand._id)">
+    </div>
+</div>
